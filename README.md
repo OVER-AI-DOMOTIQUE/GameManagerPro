@@ -25,6 +25,20 @@ Game Manager Pro propose une interface sombre orientée productivité avec :
 
 ---
 
+## Captures d'écran
+
+### Bibliothèque principale
+
+Game Manager Pro affiche automatiquement les jeux détectés sous forme de cartes avec jaquette, nom du jeu et interface sombre moderne.
+
+![Bibliothèque Game Manager Pro](docs/library.png)
+
+### Menu tray / lancement rapide
+
+L'application propose aussi un menu rapide depuis la zone de notification Windows, permettant de lancer directement un jeu ou de rouvrir l'application complète.
+
+![Menu tray Game Manager Pro](docs/tray.png)
+
 ## Fonctionnalités
 
 ### Bibliothèque de jeux
