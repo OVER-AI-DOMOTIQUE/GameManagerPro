@@ -1,0 +1,58 @@
+<Window x:Class="GameManagerPro.Views.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Paramètres - Game Manager Pro" Height="450" Width="500"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="20" FontWeight="Bold" Margin="0 0 0 24">Paramètres</TextBlock>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 16">
+            <TextBox materialDesign:HintAssist.Hint="Répertoire des jeux" Text="{Binding GameDirectory}" Width="350" VerticalAlignment="Center" />
+            <Button Content="..." Command="{Binding BrowseDirectoryCommand}" Margin="8 0 0 0" Width="40" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 0 0 16">
+            <TextBox materialDesign:HintAssist.Hint="Clé API SteamGridDB" Text="{Binding SteamGridDbApiKey}" Width="350" VerticalAlignment="Center" />
+            <Button Content="TESTER" Command="{Binding TestApiCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Margin="8 0 0 0" />
+        </StackPanel>
+
+        <CheckBox Grid.Row="3" Content="Activer l'icône dans la zone de notification (System Tray)" IsChecked="{Binding EnableTray}" Margin="0 0 0 16" />
+
+        <CheckBox Grid.Row="4" Content="Lancer au démarrage de Windows" IsChecked="{Binding LaunchWithWindows}" Margin="0 0 0 16" />
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0 0 0 16" IsEnabled="{Binding LaunchWithWindows}">
+            <TextBlock Text="Mode de démarrage :" VerticalAlignment="Center" Margin="0 0 16 0"/>
+            <ComboBox SelectedValuePath="Tag" SelectedValue="{Binding StartupMode}" Width="200">
+                <ComboBoxItem Content="Ouvrir la fenêtre" Tag="Window" />
+                <ComboBoxItem Content="Réduit dans le Tray" Tag="Tray" />
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="ANNULER" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 8 0" Click="Cancel_Click" />
+            <Button Content="ENREGISTRER" Command="{Binding SaveCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+        </StackPanel>
+
+        <!-- Snackbar at the bottom of the dialog -->
+        <materialDesign:Snackbar MessageQueue="{Binding SettingsSnackbarMessageQueue}" Grid.RowSpan="8" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>
